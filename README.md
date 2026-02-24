@@ -88,6 +88,7 @@ python3 -m http.server 8000
 
 補足:
 - `public/index.html` 内の `./styles.css`, `./config.js`, `./app.js` は相対パスで参照しているため、`/public/` 配下で正しく動作します。
+- リポジトリ直下の `index.html` から `./public/` へ自動遷移するため、`https://<user>.github.io/<repo>/` でも開けます。
 - もし `404` になる場合は、`Settings > Pages` で branch/folder 設定を再確認してください。
 
 ## 8. 初回コミットとPush（任意）
