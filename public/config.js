@@ -1,5 +1,5 @@
 window.PDF_LIST_CONFIG = {
-  csvUrl: "PASTE_YOUR_PUBLISHED_CSV_URL_HERE",
+  csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTKFpfeKMmySbGaCeNhDQG-49ibNIrN2CNyqpgK_pvULstjpEtw2V069z3jYkxSoII94aK1s0IJ9u03/pub?gid=0&single=true&output=csv",
   cacheBuster: true,
   labels: {
     pageTitle: "PDF一覧",
