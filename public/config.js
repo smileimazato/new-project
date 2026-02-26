@@ -1,6 +1,14 @@
 window.PDF_LIST_CONFIG = {
   csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyNg6k1p6lqRbDwxWTjnAlTuG3xsstrzOCsLLtUeAEef0GT7FKy6wEbCihQ3eLmZyMCr8KZdlgXnzC/pub?gid=1215935874&single=true&output=csv",
   cacheBuster: true,
+  branding: {
+    logoAlt: "スマイル",
+    logoCandidates: [
+      "https://smileosaka.com/wp-content/uploads/2023/08/SmileGruop.png",
+      "https://smileosaka.com/wp-content/uploads/2023/08/SmileGroup.png",
+      "https://smileosaka.com/wp-content/uploads/2023/08/cropped-SmileGruop-130x72.png"
+    ]
+  },
   labels: {
     pageTitle: "PDF一覧",
     pageDescription: "必要な資料をすぐに見つけられます",

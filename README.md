@@ -9,6 +9,12 @@ LINEのリッチメニュー/メッセージから開くことを想定した、
 - `public/styles.css`
 - `public/app.js`
 - `public/config.js`
+- `sheet-template.csv`
+
+## 1.1 ロゴ設定（任意）
+
+`public/config.js` の `branding.logoCandidates` にロゴ画像URLを設定できます。  
+先頭から順に読み込み、表示可能なURLを1つ採用します。
 
 ## 2. スプレッドシート台帳（列仕様）
 

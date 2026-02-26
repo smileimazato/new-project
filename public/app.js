@@ -10,6 +10,7 @@
   };
 
   const el = {
+    siteLogo: document.getElementById("site-logo"),
     pageTitle: document.getElementById("page-title"),
     pageDescription: document.getElementById("page-description"),
     searchInput: document.getElementById("search-input"),
@@ -32,6 +33,8 @@
 
   function applyUiLabels() {
     document.title = labels.pageTitle || "PDF一覧";
+    applyBranding();
+
     if (el.pageTitle) {
       el.pageTitle.textContent = labels.pageTitle || "PDF一覧";
     }
@@ -69,6 +72,63 @@
     if (regularHeading) {
       regularHeading.textContent = labels.regularHeading || "PDF一覧";
     }
+  }
+
+  function applyBranding() {
+    if (!el.siteLogo) {
+      return;
+    }
+
+    const branding = config.branding || {};
+    const candidates = getLogoCandidates(branding);
+    el.siteLogo.alt = branding.logoAlt || "サイトロゴ";
+
+    if (!candidates.length) {
+      el.siteLogo.hidden = true;
+      return;
+    }
+
+    loadFirstAvailableImage(candidates)
+      .then((resolvedUrl) => {
+        el.siteLogo.src = resolvedUrl;
+        el.siteLogo.hidden = false;
+      })
+      .catch(() => {
+        el.siteLogo.hidden = true;
+      });
+  }
+
+  function getLogoCandidates(branding) {
+    if (Array.isArray(branding.logoCandidates)) {
+      return branding.logoCandidates.map((value) => (value || "").trim()).filter(Boolean);
+    }
+    if (branding.logoUrl) {
+      return [String(branding.logoUrl).trim()];
+    }
+    return [];
+  }
+
+  function loadFirstAvailableImage(urls) {
+    return new Promise((resolve, reject) => {
+      let index = 0;
+
+      const tryNext = () => {
+        if (index >= urls.length) {
+          reject(new Error("No logo candidates available"));
+          return;
+        }
+
+        const testUrl = urls[index];
+        index += 1;
+
+        const image = new Image();
+        image.onload = () => resolve(testUrl);
+        image.onerror = () => tryNext();
+        image.src = testUrl;
+      };
+
+      tryNext();
+    });
   }
 
   function setupControls() {
