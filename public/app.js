@@ -81,10 +81,11 @@
 
     const branding = config.branding || {};
     const candidates = getLogoCandidates(branding);
+    const fallbackSrc = (el.siteLogo.getAttribute("src") || "").trim();
     el.siteLogo.alt = branding.logoAlt || "サイトロゴ";
 
     if (!candidates.length) {
-      el.siteLogo.hidden = true;
+      el.siteLogo.hidden = !fallbackSrc;
       return;
     }
 
@@ -94,6 +95,11 @@
         el.siteLogo.hidden = false;
       })
       .catch(() => {
+        if (fallbackSrc) {
+          el.siteLogo.src = fallbackSrc;
+          el.siteLogo.hidden = false;
+          return;
+        }
         el.siteLogo.hidden = true;
       });
   }
