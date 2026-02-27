@@ -68,7 +68,8 @@ body {
 
 .site-logo {
   display: block;
-  width: min(100%, 580px);
+  width: 320px;
+  max-width: 80vw;
   height: auto;
   object-fit: contain;
 }
